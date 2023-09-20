@@ -46,7 +46,9 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-LOCAL_APPS = []
+LOCAL_APPS = [
+    "library",
+]
 
 THIRD_PARTY_APPS = [
     "rest_framework",
