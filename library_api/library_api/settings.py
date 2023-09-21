@@ -49,6 +49,8 @@ DJANGO_APPS = [
 LOCAL_APPS = [
     "library",
     "library.user",
+    "library.auth",
+    "library.books",
 ]
 
 THIRD_PARTY_APPS = [
