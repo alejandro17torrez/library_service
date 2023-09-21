@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  db:
+      image: postgres:latest
+      restart: always
+      env_file:
+        - ./.envs/.postgresql
+      ports:
+        - "5432:5432"
+      volumes:
+        - postgres_data:/var/lib/postgresql/data
+
+  django:
+    build:
+      context: .
+      dockerfile: ./Docker/django/Dockerfile
+    image: library_api
+    container_name: library_api
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    env_file:
+      - ./.envs/.django
+      - ./.envs/.env
+
+volumes:
+  data:
+  postgres_data:
+    driver: local
