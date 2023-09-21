@@ -1,21 +1,16 @@
-from rest_framework.permissions import SAFE_METHODS, BasePermission
+from rest_framework.permissions import BasePermission
 
 
 class UserPermission(BasePermission):
-    def has_object_permission(self, request, view):
-        if request.user.is_anonymus:
-            return request.method in SAFE_METHODS
-        if view.basename in [
-            "post",
-        ]:
-            return bool(request.user and request.user.is_authenticated)
-        return False
-
     def has_permission(self, request, view):
-        if view.basename in [
-            "post",
+        if request.method == "GET":
+            # Allow GET requests for all users
+            return True
+        elif request.user.is_authenticated and request.method in [
+            "PUT",
+            "POST",
+            "DELETE",
         ]:
-            if request.user.is_anonymus:
-                return request.method in SAFE_METHODS
-            return bool(request.user and request.user.is_authenticated)
-        return False
+            return True
+        else:
+            return False
