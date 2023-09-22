@@ -8,12 +8,12 @@ export const useSignIn = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { dispatch } = useAuthContext();
 
-  const signIn = async ({ username, password }: AuthPayload) => {
+  const signIn = async ({ email, password }: AuthPayload) => {
     setIsLoading(true);
     setError(null);
 
     const response: Response = await getAuthToken({
-      username: username, password: password
+      email: email, password: password
     });
 
     const token = await response.json();
