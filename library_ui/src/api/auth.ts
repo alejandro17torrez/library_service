@@ -5,13 +5,13 @@ import { Methods } from "../definations/interfaces/fetch";
 import { fetchWithToken } from "./fetch";
 import { SignUpInterface } from "../definations/interfaces/user";
 
-export const getAuthToken = async ({ username, password }: AuthPayload) => {
+export const getAuthToken = async ({ email, password }: AuthPayload) => {
   return await fetcWithoutToken({
     url: SIGININ,
     params: {},
     method: Methods.POST,
     data: {
-      'username': username,
+      'email': email,
       'password': password,
   }})
 };
