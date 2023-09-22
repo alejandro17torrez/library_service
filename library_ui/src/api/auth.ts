@@ -17,7 +17,7 @@ export const getAuthToken = async ({ username, password }: AuthPayload) => {
 };
 
 
-export const registerUser = async ({
+export const createUser = async ({
   username,
   email,
   firstName,
