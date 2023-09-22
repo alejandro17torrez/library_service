@@ -9,6 +9,6 @@ export interface SignUpInterface {
   firstName: string;
   lastName: string;
   password: string;
-  isSuperuser: boolean;
-  isStaff: boolean;
+  isSuperuser?: boolean;
+  isStaff?: boolean;
 }
