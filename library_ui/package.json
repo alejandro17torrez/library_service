@@ -11,9 +11,15 @@
   },
   "dependencies": {
     "@types/styled-components": "^5.1.27",
+    "bootstrap": "^5.3.2",
+    "primeicons": "^6.0.1",
+    "primereact": "^9.6.2",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.8.0",
     "react-dom": "^18.2.0",
-    "styled-components": "^6.0.8"
+    "react-router-dom": "^6.16.0",
+    "styled-components": "^6.0.8",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

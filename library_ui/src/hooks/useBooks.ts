@@ -9,8 +9,8 @@ export const useBooks = () => {
   const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
-    get().then((book) => setBooks(book));
-  }, [loading, state.token.access]);
+    get().then((book) => setBooks(book.results));
+  }, [loading]);
 
   const bookById = (book: Book) => {
     return getById({
