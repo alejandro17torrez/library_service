@@ -7,8 +7,8 @@ import Register from './pages/register';
 import Header from './components/header';
 
 
-
 function App() {
+
   return (
     <>
       <Header />
