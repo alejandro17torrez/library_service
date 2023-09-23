@@ -15,3 +15,8 @@ export interface DeleteForm {
   deleteDialog: boolean;
   book: Book;
 }
+
+export interface EditForm extends BookForm {
+  hideDialog: () => void;
+  dialog: boolean;
+}
