@@ -8,3 +8,10 @@ export interface BookForm {
   onChangeNumber: (e: InputNumberChangeEvent, name: string) => void;
   save: () => Promise<void>;
 }
+
+export interface DeleteForm {
+  deleteDialogFooter: JSX.Element;
+  hideDeleteDialog: () => void;
+  deleteDialog: boolean;
+  book: Book;
+}

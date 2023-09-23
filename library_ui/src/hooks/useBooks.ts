@@ -45,5 +45,5 @@ export const useBooks = () => {
     return;
   }
 
-  return { books, bookById, createOrUpdate, softDelete };
+  return { books, bookById, createOrUpdate, softDelete, setLoading };
 }
