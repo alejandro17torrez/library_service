@@ -1,20 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { classNames } from 'primereact/utils';
+import React, { useState, useRef } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Toast } from 'primereact/toast';
 import { Button } from 'primereact/button';
-import { FileUpload } from 'primereact/fileupload';
-import { Rating } from 'primereact/rating';
-import { Toolbar } from 'primereact/toolbar';
-import { InputTextarea } from 'primereact/inputtextarea';
-import { RadioButton, RadioButtonChangeEvent } from 'primereact/radiobutton';
-import { InputNumber, InputNumberChangeEvent } from 'primereact/inputnumber';
-import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
-import { Tag } from 'primereact/tag';
-
-import { DataView } from 'primereact/dataview';
 import { useBooks } from "../../hooks/useBooks";
 import { Book } from '../../definations/interfaces/book';
 import { emptyBook } from '../../definations/initialValues/books';
@@ -88,6 +77,7 @@ export default function BookList () {
      return (
       <React.Fragment>
         <Button icon="pi pi-trash" rounded outlined severity="danger" onClick={() => confirmDelete(book)} />
+        <Button className="mx-2" icon="pi pi-book" rounded outlined severity="info" onClick={() => location.href = `/books/${book.id}`} />
       </React.Fragment>
      );
   };

@@ -12,12 +12,6 @@ export const useBooks = () => {
     get().then((book) => setBooks(book.results));
   }, [loading]);
 
-  const bookById = (book: Book) => {
-    return getById({
-      id: book.id,
-    })
-  }
-
   const createOrUpdate = (book: Book) => {
     setLoading(true);
     if (book.id) {
@@ -45,5 +39,5 @@ export const useBooks = () => {
     return;
   }
 
-  return { books, bookById, createOrUpdate, softDelete, setLoading };
+  return { books, createOrUpdate, softDelete, setLoading };
 }
