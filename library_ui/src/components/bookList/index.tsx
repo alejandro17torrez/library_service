@@ -8,6 +8,8 @@ import { useBooks } from "../../hooks/useBooks";
 import { Book } from '../../definations/interfaces/book';
 import { emptyBook } from '../../definations/initialValues/books';
 import { DeleteDialog } from '../dialogs/delete';
+import { EditDialog } from '../dialogs/editDialog';
+import { InputNumberChangeEvent } from 'primereact/inputnumber';
 
 export default function BookList () {
   // @ts-ignore
@@ -31,6 +33,11 @@ export default function BookList () {
     setDialog(false);
   };
 
+  const edit = async (book: Book) => {
+    setBook(book);
+    setDialog(true);
+  };
+
   const hideDeleteDialog = () => {
     setDeleteDialog(false);
   };
@@ -38,6 +45,22 @@ export default function BookList () {
   const confirmDelete = (book: Book) => {
     setBook(book);
     setDeleteDialog(true);
+  };
+
+  const onChangeText = (e: React.ChangeEvent<HTMLInputElement>, name: string) => {
+    const value = (e.target?.value) || '';
+    const _book = { ...book };
+    // @ts-ignore
+    _book[`${name}`] = value;
+    setBook(_book);
+  };
+
+  const onChangeNumber = (e: InputNumberChangeEvent, name: string) => {
+    const value = e.value || 0;
+    const _book = { ...book };
+    // @ts-ignore
+    _book[`${name}`] = value;
+    setBook(_book);
   };
 
   const deleteBook = async () => {
@@ -52,6 +75,18 @@ export default function BookList () {
     setLoading(false);
   };
 
+  const save = async () => {
+    setLoading(true);
+    const status = await createOrUpdate(book);
+    if (status === 201 || status === 200) {
+      toast.current?.show({ severity: 'success', summary: 'Successful', detail: 'Saved!!', life: 3000 });
+    } else {
+      toast.current?.show({ severity: 'error', summary: 'Error', detail: `Error código ${status}`, life: 3000 });
+    }
+    setLoading(false);
+    setDialog(false);
+  };
+
   const deleteDialogFooter = (
      <React.Fragment>
          <Button label="No" icon="pi pi-times" outlined onClick={hideDeleteDialog} />
@@ -59,9 +94,9 @@ export default function BookList () {
      </React.Fragment>
   );
 
-   const imageBodyTemplate = (book: Book) => {
-      return <img src={`/images/book_thumb.png`} alt={book.title} className="shadow-2 border-round" style={{ width: '64px' }} />;
-    };
+  const imageBodyTemplate = (book: Book) => {
+    return <img src={`/images/book_thumb.png`} alt={book.title} className="shadow-2 border-round" style={{ width: '64px' }} />;
+  };
 
   const header = (
         <div className="flex flex-wrap gap-2 align-items-center justify-content-between">
@@ -76,6 +111,7 @@ export default function BookList () {
   const actionBodyTemplate = (book: Book) => {
      return (
       <React.Fragment>
+        <Button className="mx-2" icon="pi pi-pencil" rounded outlined severity="warning" onClick={() =>  edit(book)}/>
         <Button icon="pi pi-trash" rounded outlined severity="danger" onClick={() => confirmDelete(book)} />
         <Button className="mx-2" icon="pi pi-book" rounded outlined severity="info" onClick={() => location.href = `/books/${book.id}`} />
       </React.Fragment>
@@ -90,10 +126,10 @@ export default function BookList () {
           <DataTable ref={dt} value={books} dataKey="id"  paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} books" globalFilter={globalFilter} header={header}>
+              <Column field="image" header="Image" body={imageBodyTemplate}></Column>
               <Column field="title" header="Code" sortable style={{ minWidth: '12rem' }}></Column>
               <Column field="author" header="Name" sortable style={{ minWidth: '16rem' }}></Column>
               <Column field="publication_year" header="Name" sortable style={{ minWidth: '16rem' }}></Column>
-              <Column field="image" header="Image" body={imageBodyTemplate}></Column>
               <Column body={actionBodyTemplate} exportable={false} style={{ minWidth: '12rem' }}></Column>
           </DataTable>
         </div>
@@ -103,6 +139,15 @@ export default function BookList () {
           hideDeleteDialog={hideDeleteDialog}
           deleteDialog={deleteDialog}
           book={book}
+        />
+
+        <EditDialog
+          dialog={dialog}
+          hideDialog={hideDialog}
+          book={book}
+          save={save}
+          onChangeText={onChangeText}
+          onChangeNumber={onChangeNumber}
         />
     </div>
   );
