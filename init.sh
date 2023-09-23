@@ -16,6 +16,10 @@ fi
 python library_api/manage.py makemigrations
 python library_api/manage.py migrate
 
+# fixtures
+python manage.py loaddata libray/fixtures/superuser_fixture.json --app user.user
+python manage.py loaddata libray/fixtures/books_fixtures.json --app books.user
+
 # tests
 python library_api/manage.py test
 

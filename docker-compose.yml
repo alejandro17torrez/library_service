@@ -26,6 +26,15 @@ services:
       - ./.envs/.django
       - ./.envs/.env
 
+  ui:
+    build:
+      context: .
+      dockerfile: ./Docker/nodejs/Dockerfile
+    image: library_ui
+    container_name: library_ui
+    ports:
+      - 5173:5173
+
 volumes:
   data:
   postgres_data:

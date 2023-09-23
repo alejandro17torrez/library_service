@@ -1,0 +1,59 @@
+
+[
+  {
+    "model": "books.book",
+    "pk": 1,
+    "fields": {
+      "title": "The Pragmatic Programmer",
+      "author": "Andrew Hunt, David Thomas",
+      "publication_year": 1999
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 2,
+    "fields": {
+      "title": "Clean Code",
+      "author": "Robert C. Martin",
+      "publication_year": 2008
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 3,
+    "fields": {
+      "title": "Design Patterns: Elements of Reusable Object-Oriented Software",
+      "author": "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides",
+      "publication_year": 1994
+    }
+  },
+  // Add 12 more books with similar structures
+  {
+    "model": "books.book",
+    "pk": 13,
+    "fields": {
+      "title": "The Hitchhiker's Guide to the Galaxy",
+      "author": "Douglas Adams",
+      "publication_year": 1979
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 14,
+    "fields": {
+      "title": "Neuromancer",
+      "author": "William Gibson",
+      "publication_year": 1984
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 15,
+    "fields": {
+      "title": "Snow Crash",
+      "author": "Neal Stephenson",
+      "publication_year": 1992
+    }
+  },
+  // Add 9 more books with similar structures
+]
