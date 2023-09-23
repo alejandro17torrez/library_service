@@ -13,9 +13,11 @@ const Header = () => {
         <a href="/" className="link">
           Books List
         </a>
-        <a href="/add" className="link">
-          Add Book
-        </a>
+        {state.token && (
+          <a href="/add" className="link">
+            Add Book
+          </a>
+        )}
         {!state.token && (
         <a href="/login" className="link">
           Sign In

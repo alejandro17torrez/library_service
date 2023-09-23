@@ -10,26 +10,22 @@ import { emptyBook } from '../../definations/initialValues/books';
 import { DeleteDialog } from '../dialogs/delete';
 import { EditDialog } from '../dialogs/editDialog';
 import { InputNumberChangeEvent } from 'primereact/inputnumber';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 export default function BookList () {
+
+  const { state }  = useAuthContext();
+
   // @ts-ignore
   const { books, softDelete, createOrUpdate, setLoading } = useBooks();
   const [book, setBook] = useState<Book>(emptyBook);
   const [dialog, setDialog] = useState<boolean>(false);
-  const [submitted, setSubmitted] = useState<boolean>(false);
   const [deleteDialog, setDeleteDialog] = useState<boolean>(false);
   const [globalFilter, setGlobalFilter] = useState<string>('');
   const toast = useRef<Toast>(null);
   const dt = useRef<DataTable<Book[]>>(null);
 
-  const openNew = () => {
-    setBook(emptyBook);
-    setSubmitted(false);
-    setDialog(true);
-  };
-
   const hideDialog = () => {
-    setSubmitted(false);
     setDialog(false);
   };
 
@@ -111,9 +107,13 @@ export default function BookList () {
   const actionBodyTemplate = (book: Book) => {
      return (
       <React.Fragment>
-        <Button className="mx-2" icon="pi pi-pencil" rounded outlined severity="warning" onClick={() =>  edit(book)}/>
-        <Button icon="pi pi-trash" rounded outlined severity="danger" onClick={() => confirmDelete(book)} />
         <Button className="mx-2" icon="pi pi-book" rounded outlined severity="info" onClick={() => location.href = `/books/${book.id}`} />
+        {state.token && (
+          <>
+            <Button className="mx-2" icon="pi pi-pencil" rounded outlined severity="warning" onClick={() =>  edit(book)}/>
+            <Button icon="pi pi-trash" rounded outlined severity="danger" onClick={() => confirmDelete(book)} />
+          </>
+        )}
       </React.Fragment>
      );
   };

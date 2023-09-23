@@ -5,17 +5,22 @@ import { emptyBook } from "../definations/initialValues/books";
 import { InputNumberChangeEvent } from "primereact/inputnumber";
 import { Toast } from "primereact/toast";
 import { useBooks } from "../hooks/useBooks";
+import { sleep } from "../utils/sleep";
+import { href } from "../utils/href";
 
 export default function AddBook () {
   // @ts-ignore
   const { createOrUpdate } = useBooks();
   const [book, setBook] = useState<Book>(emptyBook);
   const toast = useRef<Toast>(null)
-  
+
   const save = async () => {
     const status = await createOrUpdate(book);
     if (status === 201 || status === 200) {
       toast.current?.show({ severity: 'success', summary: 'Successful', detail: 'Saved!!', life: 3000 });
+      setBook(emptyBook);
+      sleep(3000);
+      href("/");
     } else {
       toast.current?.show({ severity: 'error', summary: 'Error', detail: `Error código ${status}`, life: 3000 });
     }
@@ -44,5 +49,5 @@ export default function AddBook () {
       <Toast ref={toast} />
       <BookForm book={book} onChangeNumber={onChangeNumber} onChangeText={onChangeText} save={save} />
     </>
-  ); 
+  );
 }
