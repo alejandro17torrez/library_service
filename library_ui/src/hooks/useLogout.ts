@@ -7,7 +7,6 @@ export const useLogout = () => {
   const logout = () => {
     sessionStorage.removeItem(Auth.USER);
     dispatch({ type: Auth.LOGOUT });
-    window.location.href = "/";
   };
 
   return { logout };
