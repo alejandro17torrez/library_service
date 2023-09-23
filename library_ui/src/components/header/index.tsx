@@ -17,9 +17,9 @@ const Header = () => {
           Add Book
         </a>
         {!state.token && (
-          <a href="/login" className="link">
-            Sign In
-          </a>
+        <a href="/login" className="link">
+          Sign In
+        </a>
         )}
         <a href="/register" className="link">
           Sign Up
@@ -29,7 +29,7 @@ const Header = () => {
             <span>
               {state.token.user.username}
             </span>
-            <a href="/" onClick={() => logout} className="link">
+            <a href="/" onClick={() => logout()} className="link">
               Logout
             </a>
           </>

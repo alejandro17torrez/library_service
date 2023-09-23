@@ -16,7 +16,6 @@ export default function AddBook () {
     const status = await createOrUpdate(book);
     if (status === 201 || status === 200) {
       toast.current?.show({ severity: 'success', summary: 'Successful', detail: 'Saved!!', life: 3000 });
-      window.location.href = "/";
     } else {
       toast.current?.show({ severity: 'error', summary: 'Error', detail: `Error código ${status}`, life: 3000 });
     }
