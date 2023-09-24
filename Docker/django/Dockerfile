@@ -22,6 +22,7 @@ RUN sed -i 's/\r$//g' /init
 RUN chmod +x /init
 
 COPY ../../ /app
+RUN rm -rf library_ui/
 
 # install all dependencies from requirement.txt
 RUN pip install --no-cache-dir -r requirements.txt

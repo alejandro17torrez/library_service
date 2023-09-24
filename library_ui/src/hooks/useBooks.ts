@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuthContext } from "./useAuthContext";
-import { get, getById, update, destroy, create } from "../api/books";
+import { get, update, destroy, create } from "../api/books";
 import { Book } from "../definations/interfaces/book";
 
 export const useBooks = () => {

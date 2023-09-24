@@ -56,8 +56,44 @@ docker-compose down
 
 # Stack of technologies:
 
-- Django with Django Rest Framework as a backend *For more information look the **requirements.txt file**
-- React + Vite with typescript as a frontend *For more information look the **package.json file**
+## Backend's Stack:
+- Django with Django Rest Framework as a backend and so on. *For more information look the **requirements.txt file**
+
+## Frontend's Stack:
+- React + Vite with typescript as a frontend, and so on. *For more information look the **package.json file**
+
+# Architecture project:
+
+The project has this architecture:
+
+- library_api/ **is the backend**
+- library_ui/ **is the front end**
+
+## Backend:
+
+The backend has a Djago structure with little changes:
+- **fixtures/** is the folder when are the fixtures with load initial data
+- **library_api/** Django main folder
+- **library/** is the folder when are the Django apps for user, books and auth features
+    - **auth/** App to manage auth functions
+    - **books/** App to manage books DDL and DML functions
+    - **user** App to manage user DDL and DML functions
+    - **utils/** Space to manage abstract classes to viewsets, models and serializers
+
+## Frontend:
+The frontend has a React + Vite application, in this case we will look the src/ and public/ file
+
+- public/ **The site to save media data**
+- src/ **is the file with the ui structure**
+    - **api/** The space to fetch all endpoints of backend
+    - **assets/** The space to save media files
+    - **components/** The space to manage react components
+    - **contexts/** The site to make react contexts
+    - **definations/** This space is for the typescript magic, on it are the interfaces, endpoints, and breakpoints responsive values
+    - **hooks/** The space to manage custom hooks
+    - **pages/** Components that will be on react router urls
+    - **utils/** Space to manage util functions to manage specific things
+
 
 # Look out!
 
