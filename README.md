@@ -100,4 +100,12 @@ The frontend has a React + Vite application, in this case we will look the src/ 
 Currently the project has this issues:
 - If you want to edit the code of this project on the frontend the live reload of VITE is not working inside the docker containers them you will have to install pnpm (I can be from npm with ```npm -g install pnpm```) and you will have to install all node modules inside *library_ui* folder with the command ```pnpm install```
 
+# Default super user:
+
+This project on the fixtures folder on backend as a fixture for create a default superuser them the credentials are:
+email: admin@admin.com
+password: admin
+
+This user exists for the goal that this project can be tested without complications :)
+
 *That's all information for now, happy coding :)*
