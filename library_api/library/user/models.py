@@ -15,9 +15,7 @@ class UserManager(BaseUserManager, AbstractManager):
         self,
         username: str,
         email: str,
-        password: str = None,
-        is_superuser: bool = False,
-        is_staff: bool = False,
+        password: str,
         **kwargs: dict,
     ):
         """
@@ -34,11 +32,24 @@ class UserManager(BaseUserManager, AbstractManager):
             username=username, email=self.normalize_email(email), **kwargs
         )
         user.set_password(password)
-
-        if is_superuser:
-            user.is_superuser = True
-            user.is_staff = True
         user.save(using=self._db)
+        return user
+
+    def create_superuser(
+        self,
+        username: str,
+        email: str,
+        password: str,
+    ):
+        user = self.create_user(
+            username=username,
+            email=email,
+            password=password,
+        )
+        user.is_staff = True
+        user.is_superuser = True
+        user.save(using=self._db)
+
         return user
 
 

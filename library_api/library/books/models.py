@@ -21,6 +21,3 @@ class Book(AbstractModel, SoftDeleteModel):
 
     def __str__(self):
         return f"{self.title}"
-
-    class Meta:
-        db_table = "'library.book'"
