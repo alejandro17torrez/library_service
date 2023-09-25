@@ -11,19 +11,20 @@ then
     echo "PostgreSQL started"
 fi
 
+cd library_api
 
 # run migrations
-python library_api/manage.py makemigrations
-python library_api/manage.py migrate
+python manage.py makemigrations
+python manage.py migrate
 
 # fixtures
-python library_api/manage.py loaddata library_api/libray/fixtures/superuser_fixture.json --app user.user
-python library_api/manage.py loaddata library_api/libray/fixtures/books_fixtures.json --app books.user
+python manage.py loaddata fixtures/fixture_superuser.json
+python manage.py loaddata fixtures/fixture_books.json
 
 # tests
-python library_api/manage.py test
+python manage.py test
 
 # start server
-python library_api/manage.py runserver 0.0.0.0:8000
+python manage.py runserver 0.0.0.0:8000
 
 exec "$@"
