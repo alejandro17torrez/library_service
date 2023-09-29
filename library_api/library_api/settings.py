@@ -154,6 +154,17 @@ SIMPLE_JWT = {
     "SINGING_KEY": str(os.environ.get("DJANGO_SECRET_KEY")),
 }
 
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    },
+}
+
+
 # AUTH settings
 AUTH_USER_MODEL = "library_user.User"
 

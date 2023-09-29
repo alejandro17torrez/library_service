@@ -26,6 +26,15 @@ services:
       - ./.envs/.django
       - ./.envs/.env
 
+  cache:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - 6379:6379
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes:
+      - cache:/data
+
   ui:
     build:
       context: .
@@ -38,4 +47,6 @@ services:
 volumes:
   data:
   postgres_data:
+    driver: local
+  cache:
     driver: local
